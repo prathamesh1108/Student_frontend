@@ -1,5 +1,16 @@
 .App {
   text-align: center;
+  
+}
+
+body{
+  background-color: #F6F1DE;
+}
+
+.heading{
+  font-family: 'Roboto', sans-serif;
+  color: blue;
+
 }
 
 .App-logo {
@@ -25,8 +36,10 @@
 }
 
 .App-link {
-  color: #61dafb;
+  color: #3E3F5B;
 }
+
+
 
 @keyframes App-logo-spin {
   from {
