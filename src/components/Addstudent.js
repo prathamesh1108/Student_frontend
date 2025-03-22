@@ -1,15 +1,17 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import { Container, Button, Paper, Snackbar, Alert } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
-export default function Student() {
+export default function AddStudent() {
   const paperstyle = { padding: "50px 20px", width: 500, margin: "20px auto" };
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
+  const [email, setEmail] = useState("");
   const [nameError, setNameError] = useState(false);
   const [addressError, setAddressError] = useState(false);
+  const [emailError, setEmailError] = useState(false);
   const [openSnackbar, setOpenSnackbar] = useState(false);
   const navigate = useNavigate();
 
@@ -27,11 +29,17 @@ export default function Student() {
       setAddressError(false);
     }
 
-    if (name.trim() === "" || address.trim() === "") {
+    if (email.trim() === "") {
+      setEmailError(true);
+    } else {
+      setEmailError(false);
+    }
+
+    if (name.trim() === "" || address.trim() === "" || email.trim() === "") {
       return;
     }
 
-    const student = { name, address };
+    const student = { name, address, email };
     fetch("http://localhost:8080/student/add", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
@@ -40,6 +48,7 @@ export default function Student() {
       setOpenSnackbar(true); // Open success message
       setName("");
       setAddress("");
+      setEmail("");
     });
   };
 
@@ -71,14 +80,20 @@ export default function Student() {
               error={addressError}
               helperText={addressError ? "Address is required" : ""}
             />
+            <TextField
+              label="Student email"
+              variant="outlined"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              fullWidth
+              error={emailError}
+              helperText={emailError ? "Email is required" : ""}
+            />
             <Button onClick={handleClick} variant="contained">
               Submit
             </Button>
-            <Button
-              onClick={() => navigate("/Studentlist")}
-              variant="contained"
-            >
-              View List
+            <Button onClick={() => navigate("/")} variant="contained">
+              Cancel
             </Button>
           </Box>
         </Paper>

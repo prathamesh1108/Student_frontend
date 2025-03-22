@@ -2,10 +2,15 @@ import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import { Container, TextField, Button, Paper } from "@mui/material";
 
-export default function Editstudent() {
+export default function EditStudent() {
   const location = useLocation();
   const navigate = useNavigate();
-  const student = location.state?.student || { id: "", name: "", address: "" };
+  const student = location.state?.student || {
+    id: "",
+    name: "",
+    address: "",
+    email: "",
+  };
   const [formData, setFormData] = useState(student);
 
   const handleChange = (e) => {
@@ -27,7 +32,7 @@ export default function Editstudent() {
       );
 
       if (response.ok) {
-        navigate("/Studentlist");
+        navigate("/");
       } else {
         console.error("Failed to update student");
       }
@@ -42,11 +47,12 @@ export default function Editstudent() {
       <Paper
         key={student.id}
         elevation={3}
-        style={{ padding: "10px", width: 400, margin: "10px auto" }}
+        style={{ padding: "10px", width: 700, margin: "10px auto" }}
       >
         <form onSubmit={handleSubmit}>
           <TextField
             name="name"
+            label="Name"
             value={formData.name}
             onChange={handleChange}
             fullWidth
@@ -54,7 +60,16 @@ export default function Editstudent() {
           />
           <TextField
             name="address"
+            label="Address"
             value={formData.address}
+            onChange={handleChange}
+            fullWidth
+            margin="normal"
+          />
+          <TextField
+            name="email"
+            label="Email"
+            value={formData.email}
             onChange={handleChange}
             fullWidth
             margin="normal"
@@ -63,8 +78,8 @@ export default function Editstudent() {
             Save
           </Button>
           <Button
-            variant="outlined"
-            onClick={() => navigate("/Studentlist")}
+            variant="contained"
+            onClick={() => navigate("/")}
             style={{ marginLeft: "10px" }}
           >
             Cancel

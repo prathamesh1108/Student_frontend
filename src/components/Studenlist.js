@@ -11,7 +11,8 @@ import {
 } from "@mui/material";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-export default function Studentlist() {
+
+export default function StudentList() {
   const [students, setStudents] = useState([]);
   const navigate = useNavigate();
 
@@ -64,28 +65,42 @@ export default function Studentlist() {
 
   return (
     <Container>
-      <h1 className="heading">Students</h1>
-
       <TableContainer
         component={Paper}
-        sx={{ maxWidth: 800, margin: "30px auto", padding: 2 }}
+        sx={{ maxWidth: 1100, margin: "30px auto", padding: 2 }}
       >
         <Table>
           <TableHead component={Paper}>
             <TableRow>
-              <TableCell sx={{ textAlign: "center" }}>Name</TableCell>
-              <TableCell sx={{ textAlign: "center" }}>Address</TableCell>
-              <TableCell sx={{ textAlign: "center" }}>Actions</TableCell>
+              <TableCell sx={{ textAlign: "center", fontWeight: "bold" }}>
+                Sr No
+              </TableCell>
+              <TableCell sx={{ textAlign: "center", fontWeight: "bold" }}>
+                Name
+              </TableCell>
+              <TableCell sx={{ textAlign: "center", fontWeight: "bold" }}>
+                Address
+              </TableCell>
+              <TableCell sx={{ textAlign: "center", fontWeight: "bold" }}>
+                Email
+              </TableCell>
+              <TableCell sx={{ textAlign: "center", fontWeight: "bold" }}>
+                Actions
+              </TableCell>
             </TableRow>
           </TableHead>
-          {students.map((student) => (
-            <TableBody>
-              <TableRow key={student.id}>
+          {students.map((student, index) => (
+            <TableBody key={student.id}>
+              <TableRow>
+                <TableCell sx={{ textAlign: "center" }}>{index + 1}</TableCell>
                 <TableCell sx={{ textAlign: "center" }}>
                   {student.name}
                 </TableCell>
                 <TableCell sx={{ textAlign: "center" }}>
                   {student.address}
+                </TableCell>
+                <TableCell sx={{ textAlign: "center" }}>
+                  {student.email}
                 </TableCell>
                 <TableCell
                   sx={{
@@ -115,10 +130,6 @@ export default function Studentlist() {
           ))}
         </Table>
       </TableContainer>
-
-      <Button onClick={() => navigate("/")} variant="contained">
-        Back to Add List
-      </Button>
     </Container>
   );
 }
