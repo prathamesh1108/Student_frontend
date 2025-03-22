@@ -38,7 +38,7 @@ export default function Editstudent() {
 
   return (
     <Container>
-      <h1>Edit Student</h1>
+      <h1 className="heading">Edit Student</h1>
       <Paper
         key={student.id}
         elevation={3}

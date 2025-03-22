@@ -9,8 +9,12 @@ body{
 
 .heading{
   font-family: 'Roboto', sans-serif;
-  color: blue;
+  color: #1976D2;
 
+}
+
+.tableheading{
+  text-align: center;
 }
 
 .App-logo {

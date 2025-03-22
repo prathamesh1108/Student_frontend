@@ -1,5 +1,14 @@
 import React, { useState, useEffect } from "react";
-import { Container, Paper, List, ListItemText } from "@mui/material";
+import {
+  Container,
+  Paper,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+} from "@mui/material";
 import { Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 export default function Studentlist() {
@@ -55,25 +64,58 @@ export default function Studentlist() {
 
   return (
     <Container>
-      <List>
-        <h1 style={{ color: "blue" }}>Students</h1>
-        {students.map((student) => (
-          <Paper
-            key={student.id}
-            elevation={3}
-            style={{ padding: "10px", width: 400, margin: "10px auto" }}
-          >
-            <form style={{ display: "flex" }}>
-              <ListItemText
-                primary={student.name}
-                secondary={student.address}
-              />
-              <Button onClick={() => handleEdit(student.id)}>Edit</Button>
-              <Button onClick={() => handleDelete(student.id)}>Delete</Button>
-            </form>
-          </Paper>
-        ))}
-      </List>
+      <h1 className="heading">Students</h1>
+
+      <TableContainer
+        component={Paper}
+        sx={{ maxWidth: 800, margin: "30px auto", padding: 2 }}
+      >
+        <Table>
+          <TableHead component={Paper}>
+            <TableRow>
+              <TableCell sx={{ textAlign: "center" }}>Name</TableCell>
+              <TableCell sx={{ textAlign: "center" }}>Address</TableCell>
+              <TableCell sx={{ textAlign: "center" }}>Actions</TableCell>
+            </TableRow>
+          </TableHead>
+          {students.map((student) => (
+            <TableBody>
+              <TableRow key={student.id}>
+                <TableCell sx={{ textAlign: "center" }}>
+                  {student.name}
+                </TableCell>
+                <TableCell sx={{ textAlign: "center" }}>
+                  {student.address}
+                </TableCell>
+                <TableCell
+                  sx={{
+                    textAlign: "center",
+                    display: "flex",
+                    justifyContent: "center",
+                    gap: "10px",
+                  }}
+                >
+                  <Button
+                    onClick={() => handleEdit(student.id)}
+                    variant="contained"
+                  >
+                    Edit
+                  </Button>
+                  <Button
+                    onClick={() => handleDelete(student.id)}
+                    variant="contained"
+                    color="error"
+                    sx={{ ml: 1 }}
+                  >
+                    Delete
+                  </Button>
+                </TableCell>
+              </TableRow>
+            </TableBody>
+          ))}
+        </Table>
+      </TableContainer>
+
       <Button onClick={() => navigate("/")} variant="contained">
         Back to Add List
       </Button>

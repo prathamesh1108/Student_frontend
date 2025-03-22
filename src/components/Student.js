@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
+import { useNavigate } from "react-router-dom";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
-import { Container, Button, Paper } from "@mui/material";
+import { Container, Button, Paper, Snackbar, Alert } from "@mui/material";
 
 export default function Student() {
   const paperstyle = { padding: "50px 20px", width: 500, margin: "20px auto" };
@@ -10,7 +10,8 @@ export default function Student() {
   const [address, setAddress] = useState("");
   const [nameError, setNameError] = useState(false);
   const [addressError, setAddressError] = useState(false);
-  const navigate = useNavigate(); // Hook for navigation
+  const [openSnackbar, setOpenSnackbar] = useState(false);
+  const navigate = useNavigate();
 
   const handleClick = (e) => {
     e.preventDefault();
@@ -26,20 +27,24 @@ export default function Student() {
       setAddressError(false);
     }
 
-    // If any error exists, stop submission
     if (name.trim() === "" || address.trim() === "") {
       return;
     }
+
     const student = { name, address };
     fetch("http://localhost:8080/student/add", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify(student),
     }).then(() => {
-      console.log("New student added");
+      setOpenSnackbar(true); // Open success message
       setName("");
       setAddress("");
     });
+  };
+
+  const handleSnackbarClose = () => {
+    setOpenSnackbar(false);
   };
 
   return (
@@ -64,7 +69,7 @@ export default function Student() {
               onChange={(e) => setAddress(e.target.value)}
               fullWidth
               error={addressError}
-              helperText={addressError ? "Adress is required" : ""}
+              helperText={addressError ? "Address is required" : ""}
             />
             <Button onClick={handleClick} variant="contained">
               Submit
@@ -78,6 +83,17 @@ export default function Student() {
           </Box>
         </Paper>
       </Container>
+
+      <Snackbar
+        open={openSnackbar}
+        autoHideDuration={3000}
+        onClose={handleSnackbarClose}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
+      >
+        <Alert onClose={handleSnackbarClose} severity="success">
+          Student added successfully!
+        </Alert>
+      </Snackbar>
     </>
   );
 }
