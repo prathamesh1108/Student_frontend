@@ -1,70 +1,78 @@
-# Getting Started with Create React App
+# Student CRM Full Stack Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Overview
+The Student CRM Full Stack Application is a web-based solution designed to manage student records. It provides functionalities to add, edit, view, and delete student information, including name, address, and email. The application is built with a React.js frontend and a Spring Boot backend, connected via REST APIs.
 
-## Available Scripts
+## Features
+- **Add Student**: Create new student records.
+- **View Students**: List all students with serial numbers.
+- **Edit Student**: Modify existing student records.
+- **Delete Student**: Remove student records.
 
-In the project directory, you can run:
+## Technologies Used
 
-### `npm start`
+### Frontend
+- **React.js** for building the user interface.
+- **Material-UI (MUI)** for responsive and stylish components.
+- **React Router** for routing.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+### Backend
+- **Spring Boot** for RESTful APIs.
+- **MySQL** as the database.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Setup Instructions
 
-### `npm test`
+### Prerequisites
+- **Node.js** and **npm** (for frontend)
+- **Java JDK 11 or higher** (for backend)
+- **MySQL** database
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Frontend Setup
+1. Navigate to the frontend directory.
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Run the application:
+   ```bash
+   npm start
+   ```
+4. Open `http://localhost:3000` in your browser.
 
-### `npm run build`
+### Backend Setup
+1. Open the backend project in your IDE.
+2. Configure MySQL database credentials in `application.properties`.
+3. Run the Spring Boot application.
+4. Backend will run on `http://localhost:8080`.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## API Endpoints
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Student Endpoints
+- **GET** `/student/getAll` - Retrieve all students.
+- **GET** `/student/get/{id}` - Retrieve a specific student.
+- **POST** `/student/add` - Add a new student.
+- **PUT** `/student/update/{id}` - Update an existing student.
+- **DELETE** `/student/delete/{id}` - Delete a student.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Usage
+1. Add new students via the **Add Student** form.
+2. View the list of students with serial numbers.
+3. Edit or delete students using respective buttons.
 
-### `npm run eject`
+## Screenshots
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+#Home-Page
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+![React App and 4 more pages - Pratham - Microsoft​ Edge 3_22_2025 6_23_30 PM](https://github.com/user-attachments/assets/98d799d7-00ca-48f5-b255-7372299a6b8d)
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+#Add-Student Page
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+![Add-page](https://github.com/user-attachments/assets/bdc394ed-69fa-4720-b6d1-716c7c0ff719)
 
-## Learn More
+#View-Page
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+![Edit-page](https://github.com/user-attachments/assets/dee29504-9bab-4a60-ab15-7f9cbd8c875f)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+## Author
+- **Prathamesh Subhash Vishwakarma**
